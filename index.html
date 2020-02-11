@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            text-align: center;
+        }
+        
+        button {
+            margin: 150px auto 0;
+            padding: 10px 50px;
+        }
+        
+         :fullscreen {
+            background-color: #5dc1e4;
+        }
+        
+         :fullscreen button {
+            background-color: #333;
+            border-color: #333;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <button type="button" id="toggle">Activo fullscreen</button>
+    <script>
+        if (document.fullscreenEnabled) {
+            var btn = document.getElementById("toggle");
+            btn.addEventListener("click", function(event) {
+                if (!document.fullscreenElement) {
+                    document.documentElement.requestFullscreen();
+                } else {
+                    document.exitFullscreen();
+                }
+            }, false);
+
+            document.addEventListener("fullscreenchange", function(event) {
+                console.log(event);
+                if (!document.fullscreenElement) {
+                    btn.innerText = "Acticar fullscreen";
+                } else {
+                    btn.innerText = "Salir fullscreen";
+                }
+            });
+            document.addEventListener("fullscreenerror", function(event) {
+                console.log(event);
+            });
+        }
+    </script>
+</body>
+
+</html>
